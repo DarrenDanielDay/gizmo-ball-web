@@ -21,7 +21,7 @@ export abstract class Collider
   public set position(position: Vector2D) {
     this.translate(position);
   }
-  public abstract center: Vector2D;
+  public abstract get center(): Vector2D;
   public abstract translate(point: Vector2D): ITransmittable;
 
   protected _rotation: Direction = Direction.Up;

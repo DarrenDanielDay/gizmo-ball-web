@@ -1,4 +1,4 @@
-import { MapItemNames } from "@/common/ts/model/mapitems/MapItems";
+import { MapItemNames } from "../enums";
 
 export interface ViewItem {
   typeValue: ItemType,

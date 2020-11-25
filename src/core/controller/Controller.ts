@@ -1,4 +1,4 @@
-import { Direction } from "readline";
+import { Direction } from "../physics";
 import { isRotatable, isZoomable } from "../common";
 import { itemMap } from "../constants";
 import { MapItemNames } from "../enums";
@@ -45,7 +45,7 @@ export class Controller {
     return this._currentOpenedFilePath;
   }
   private set currentOpenedFilePath(file: string | null) {
-    TSViews.changeTitle(file, this.currentFileModified);
+    // TSViews.changeTitle(file, this.currentFileModified);
     this._currentOpenedFilePath = file;
   }
 
@@ -57,7 +57,7 @@ export class Controller {
     return this._currentFileModified;
   }
   private set currentFileModified(newVal: boolean) {
-    TSViews.changeTitle(this.currentOpenedFilePath, newVal);
+    // TSViews.changeTitle(this.currentOpenedFilePath, newVal);
     this._currentFileModified = newVal;
   }
 
@@ -106,59 +106,59 @@ export class Controller {
   /**
    * 打开文件
    */
-  public open() {
-    if (this.currentFileModified) {
-      remote.dialog.showMessageBox(
-        remote.getCurrentWindow(),
-        {
-          type: 'question',
-          buttons: ['保存', '不保存', '取消'],
-          message: '当前文件未保存，是否保存?',
-          defaultId: 0,
-          cancelId: 2
-        },
-        (response, checkboxChecked) => {
-          switch (response) {
-            case 0:
-              this.save().then(res => this.openFile())
-              break
-            case 1:
-              this.openFile();
-              break
-            case 2:
-            default:
-              break
-          }
-        }
-      )
-    } else {
-      this.openFile();
-    }
-  }
+  // public open() {
+  //   if (this.currentFileModified) {
+  //     remote.dialog.showMessageBox(
+  //       remote.getCurrentWindow(),
+  //       {
+  //         type: 'question',
+  //         buttons: ['保存', '不保存', '取消'],
+  //         message: '当前文件未保存，是否保存?',
+  //         defaultId: 0,
+  //         cancelId: 2
+  //       },
+  //       (response, checkboxChecked) => {
+  //         switch (response) {
+  //           case 0:
+  //             this.save().then(res => this.openFile())
+  //             break
+  //           case 1:
+  //             this.openFile();
+  //             break
+  //           case 2:
+  //           default:
+  //             break
+  //         }
+  //       }
+  //     )
+  //   } else {
+  //     this.openFile();
+  //   }
+  // }
 
-  private openFile() {
-    FileSystem.open()
-      .then(res => {
-        const data = res.data;
-        const path = res.filePath;
-        let items = this.readFromJSON(data);
-        if (items != null) {
-          this.loadMapItemsFromItems(items);
-          this.savedJSONString = data;
-          this.currentOpenedFilePath = path;
-          this.currentFileModified = false;
-        } else {
-          remote.dialog.showMessageBox(
-            remote.getCurrentWindow(),
-            {
-              type: 'error',
-              buttons: [],
-              message: '文件已损坏'
-            }
-          )
-        }
-      })
-  }
+  // private openFile() {
+  //   FileSystem.open()
+  //     .then(res => {
+  //       const data = res.data;
+  //       const path = res.filePath;
+  //       let items = this.readFromJSON(data);
+  //       if (items != null) {
+  //         this.loadMapItemsFromItems(items);
+  //         this.savedJSONString = data;
+  //         this.currentOpenedFilePath = path;
+  //         this.currentFileModified = false;
+  //       } else {
+  //         remote.dialog.showMessageBox(
+  //           remote.getCurrentWindow(),
+  //           {
+  //             type: 'error',
+  //             buttons: [],
+  //             message: '文件已损坏'
+  //           }
+  //         )
+  //       }
+  //     })
+  // }
 
   private loadMapItemsFromItems(items: MapItem[]) {
     this.clearAll();
@@ -228,35 +228,35 @@ export class Controller {
    * 保存文件
    * @returns 回调参数为选择的文件名，若直接保存，则为空字符串
    */
-  public save(): Promise<any> {
-    const content = this.savedJSONString;
-    if (!this.currentOpenedFilePath) {
-      return FileSystem.saveAs(content).then(res => {
-        this.currentFileModified = false;
-        this.currentOpenedFilePath = res;
-        return res;
-      });
-    } else {
-      return FileSystem.save(content, this.currentOpenedFilePath).then(res => this.currentFileModified = false);
-    }
-  }
+  // public save(): Promise<any> {
+  //   const content = this.savedJSONString;
+  //   if (!this.currentOpenedFilePath) {
+  //     return FileSystem.saveAs(content).then(res => {
+  //       this.currentFileModified = false;
+  //       this.currentOpenedFilePath = res;
+  //       return res;
+  //     });
+  //   } else {
+  //     return FileSystem.save(content, this.currentOpenedFilePath).then(res => this.currentFileModified = false);
+  //   }
+  // }
 
   /**
    * 另存为文件
    * @returns 回调参数为选择的文件名
    */
-  public saveAs(): Promise<string> {
-    const content = this.savedJSONString
-    let result = FileSystem.saveAs(content);
-    if (this.currentOpenedFilePath === null) {
-      result = result.then(res => {
-        this.currentOpenedFilePath = res;
-        this.currentFileModified = false;
-        return res;
-      })
-    }
-    return result;
-  }
+  // public saveAs(): Promise<string> {
+  //   const content = this.savedJSONString
+  //   let result = FileSystem.saveAs(content);
+  //   if (this.currentOpenedFilePath === null) {
+  //     result = result.then(res => {
+  //       this.currentOpenedFilePath = res;
+  //       this.currentFileModified = false;
+  //       return res;
+  //     })
+  //   }
+  //   return result;
+  // }
 
   private collidesWithOthers(mapItem:MapItem):boolean {
     for (let element of this.mapItems) {

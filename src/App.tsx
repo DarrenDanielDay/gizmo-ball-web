@@ -1,8 +1,12 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import { CircleCollider, Vector2D } from './core/physics';
+import { CircleMapItem } from './core/mapitems/circle';
 
 function App() {
+  new CircleCollider(Vector2D.ZERO, 1);
+  new CircleMapItem(1,1);
   return (
     <div className="App">
       <header className="App-header">
