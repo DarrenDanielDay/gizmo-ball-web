@@ -1,25 +1,13 @@
-import {
-  MapItem,
-  IZoomable,
-  isRotatable,
-  Direction,
-  isZoomable,
-  MapItemNames,
-  IRotatable
-} from "./model/mapitems/MapItem"
-import FileSystem from "./fs/FileSystem"
-import { Vector2D, Angle } from './util/Vector';
-import store from "../../store/index"
-import { Ball, itemMap, TriangleMapItem } from './model/mapitems/MapItems';
-import { Physical } from './model/Physical';
-import { BorderMapItem } from './model/mapitems/BorderMapItem';
-import {
-  BaffleAlphaMapItem,
-  BaffleBetaMapItem,
-  BaffleMapItem
-} from './model/mapitems/Baffle';
-import { remote } from 'electron';
-import TSViews from '@/views/TSViews';
+import { Direction } from "readline";
+import { isRotatable, isZoomable } from "../common";
+import { itemMap } from "../constants";
+import { MapItemNames } from "../enums";
+import { BaffleAlphaMapItem, BaffleBetaMapItem } from "../mapitems/baffle";
+import { Ball } from "../mapitems/ball";
+import { BorderMapItem } from "../mapitems/border-map-item";
+import { MapItem } from "../mapitems/map-item";
+import { Vector2D, Angle } from "../physics";
+import { Physical } from "../physics/kinematics";
 
 abstract class MapItemJSON {
   abstract name: MapItemNames;

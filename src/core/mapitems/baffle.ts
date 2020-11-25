@@ -1,6 +1,6 @@
-import { PolygonMapItem, PolygonCollider } from "./Polygon";
-import { MapItemNames, MapItem } from './MapItem';
-import { Vector2D } from '../../util/Vector';
+import { MapItemNames } from "../enums";
+import { PolygonCollider, Vector2D } from "../physics";
+import { MapItem } from "./map-item";
 
 export class BaffleCollider extends PolygonCollider {
   constructor(position:Vector2D) {

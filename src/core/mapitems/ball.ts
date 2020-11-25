@@ -1,12 +1,8 @@
-import { MassPoint, Physical } from "../Physical";
-import {
-  ICollisible,
-  MapItem,
-  MapItemNames,
-  ITransmittable
-} from "./MapItem";
-import { Vector2D } from "../../util/Vector";
-import { CircleCollider } from './Circle';
+import { MapItem } from "./map-item";
+import { MapItemNames } from "../enums";
+import { ICollisible, ITransmittable } from "../interfaces";
+import { Vector2D, CircleCollider } from "../physics";
+import { MassPoint, Physical } from "../physics/kinematics";
 
 export class Ball extends MapItem {
   public get name():MapItemNames {

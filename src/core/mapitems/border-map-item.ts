@@ -1,16 +1,9 @@
-import { PolygonMapItem, PolygonCollider } from './Polygon';
-import {
-  MapItemNames,
-  Collider,
-  MapItem,
-  ICollisible,
-  ITransmittable,
-  IZoomable,
-  IRotatable
-} from './MapItem';
-import { Vector2D, Angle } from '../../util/Vector';
-import Controller from '../../Controller';
-import { Ball } from './Ball';
+import Controller from "../controller/Controller";
+import { MapItemNames } from "../enums";
+import { ICollisible, ITransmittable, IRotatable, IZoomable } from "../interfaces";
+import { Collider, PolygonCollider, Vector2D, Angle } from "../physics";
+import { Ball } from "./ball";
+import { MapItem } from "./map-item";
 
 export class BorderCollider extends Collider {
 

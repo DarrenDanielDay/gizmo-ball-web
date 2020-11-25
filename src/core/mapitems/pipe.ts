@@ -1,15 +1,10 @@
-import {
-  MapItem,
-  ICollisible,
-  IRotatable,
-  IZoomable,
-  Direction,
-  MapItemNames
-} from "./MapItem";
-import { Vector2D, Angle, Line } from "../../util/Vector";
-import { PolygonCollider, PolygonMapItem } from "./Polygon";
-import { Ball } from './Ball';
-import { Physical, MassPoint } from '../Physical';
+import { Direction } from "../physics";
+import { MapItem } from "./map-item";
+import { MapItemNames } from "../enums";
+import { ICollisible, IRotatable } from "../interfaces";
+import { PolygonCollider, Vector2D, Angle, Line } from "../physics";
+import { MassPoint, Physical } from "../physics/kinematics";
+import { Ball } from "./ball";
 
 export class PipeCollider extends PolygonCollider {
   public get center(): Vector2D {

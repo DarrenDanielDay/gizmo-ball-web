@@ -1,9 +1,10 @@
-import { PolygonMapItem } from './Polygon';
-import { MapItemNames, ICollisible } from './MapItem';
-import { Vector2D } from '../../util/Vector';
-import { Ball } from './Ball';
-import Controller from '../../Controller';
-import { SquareCollider } from './Square';
+import Controller from "../controller/Controller";
+import { MapItemNames } from "../enums";
+import { ICollisible } from "../interfaces";
+import { Vector2D } from "../physics";
+import { Ball } from "./ball";
+import { PolygonMapItem } from "./polygon";
+import { SquareCollider } from "./square";
 
 export class AbsorberMapItem extends PolygonMapItem {
   public static readonly imageURL:string = "img/item/absorber.png";
